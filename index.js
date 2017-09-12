@@ -1,5 +1,17 @@
 'use strict';
+const AggregateError = require('aggregate-error');
 const got = require('got');
+
+class GraphQLError extends Error {
+	constructor(err, body) {
+		super(err.message);
+		this.name = 'GraphQLError';
+		this.locations = err.locations;
+		this.operationName = body.operationName;
+		this.query = body.query;
+		this.variables = body.variables;
+	}
+}
 
 const graphqlGot = (url, opts) => {
 	opts = Object.assign({method: 'POST'}, opts, {json: true});
@@ -21,12 +33,12 @@ const graphqlGot = (url, opts) => {
 		})
 		.catch(err => {
 			if (err.response && typeof err.response.body === 'object') {
-				err.name = 'GraphQLError';
-				err.body = opts.body;
+				const errors = err.response.body.errors;
+				const error = Array.isArray(errors) && errors.length > 0 ?
+					errors.map(x => new GraphQLError(x, opts.body)) :
+					[new GraphQLError(err, opts.body)];
 
-				if (err.response.body.errors && err.response.body.errors.length > 0) {
-					err.message = err.response.body.errors[0].message;
-				}
+				throw new AggregateError(error);
 			}
 
 			throw err;

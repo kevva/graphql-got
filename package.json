@@ -37,6 +37,7 @@
 		"utility"
 	],
 	"dependencies": {
+		"aggregate-error": "^1.0.0",
 		"got": "^7.1.0"
 	},
 	"devDependencies": {

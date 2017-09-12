@@ -28,8 +28,9 @@ test.before(async () => {
 		}
 	};
 
-	const schema = makeExecutableSchema({typeDefs, resolvers});
-	url = await testListen(micro(microGraphql({schema})));
+	url = await testListen(micro(microGraphql({
+		schema: makeExecutableSchema({typeDefs, resolvers})
+	})));
 });
 
 test('query', async t => {
@@ -90,4 +91,26 @@ test('operationName', async t => {
 			id: 0
 		}
 	});
+});
+
+test('GraphQLError', async t => {
+	const operationName = 'foo';
+	const variables = {id: 0};
+	const query = `
+		query foo ($id: Int!) {
+			unicorn(id: 0) {
+				foo
+			}
+		}
+	`;
+
+	const errors = await t.throws(m(url, {operationName, query, variables}));
+
+	for (const x of errors) {
+		t.is(x.name, 'GraphQLError');
+		t.is(x.operationName, operationName);
+		t.is(x.query, query);
+		t.true(Array.isArray(x.locations));
+		t.deepEqual(x.variables, variables);
+	}
 });

@@ -2,6 +2,8 @@
 
 > Convenience wrapper for `got` to interact with [GraphQL](http://graphql.org/)
 
+A lightweight alternative to [`apollo-client`](https://github.com/apollographql/apollo-client) and [`relay`](https://github.com/facebook/relay).
+
 
 ## Install
 
@@ -45,7 +47,7 @@ Same as [`got`](https://github.com/sindresorhus/got), but with some additional o
 *Required*<br>
 Type: `string`
 
-The `query` to send to GraphQL.
+The `query` to send to [GraphQL](http://graphql.org/).
 
 #### variables
 
@@ -62,4 +64,4 @@ If your `query` contains multiple operations, this option is required to decide 
 
 ## License
 
-MIT © [Kevin Martensson](https://github.com/kevva)
+MIT © [Kevin Mårtensson](https://github.com/kevva)
