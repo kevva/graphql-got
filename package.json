@@ -1,0 +1,51 @@
+{
+	"name": "graphql-got",
+	"version": "0.0.0",
+	"description": "Convenience wrapper for got to interact with GraphQL",
+	"license": "MIT",
+	"repository": "kevva/graphql-got",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "github.com/kevva"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"api",
+		"apollo",
+		"get",
+		"got",
+		"graphql",
+		"gql",
+		"http",
+		"https",
+		"post",
+		"query",
+		"relay",
+		"request",
+		"uri",
+		"url",
+		"util",
+		"utility"
+	  ],
+	"dependencies": {
+		"got": "^7.1.0"
+	},
+	"devDependencies": {
+		"apollo-server-micro": "^1.1.2",
+		"ava": "*",
+		"graphql": "^0.11.3",
+		"graphql-tools": "^1.2.2",
+		"micro": "^8.0.4",
+		"test-listen": "^1.0.2",
+		"xo": "*"
+	}
+}
