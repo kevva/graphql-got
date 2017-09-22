@@ -42,24 +42,30 @@ graphqlGot('api.graphql.unicorn', {query}).then(res => {
 
 Same as [`got`](https://github.com/sindresorhus/got), but with some additional options below.
 
-#### query
+### query
 
 *Required*<br>
 Type: `string`
 
 The `query` to send to [GraphQL](http://graphql.org/).
 
-#### variables
+### variables
 
 Type: `Object`
 
 Variables to be used in your `query`. Read more [here](http://graphql.org/learn/queries/#variables).
 
-#### operationName
+### operationName
 
 Type: `string`
 
 If your `query` contains multiple operations, this option is required to decide which operation to run.
+
+### token
+
+Type: `string`
+
+If defined, an `Authorization` header with `bearer ${TOKEN}` will be sent.
 
 
 ## License

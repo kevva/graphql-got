@@ -2,6 +2,7 @@ import test from 'ava';
 import {makeExecutableSchema} from 'graphql-tools';
 import {microGraphql} from 'apollo-server-micro';
 import micro from 'micro';
+import nock from 'nock';
 import testListen from 'test-listen';
 import m from '.';
 
@@ -113,4 +114,15 @@ test('GraphQLError', async t => {
 		t.true(Array.isArray(x.locations));
 		t.deepEqual(x.variables, variables);
 	}
+});
+
+test('token option', async t => {
+	const token = 'unicorn';
+
+	nock('http://foo.bar/')
+		.matchHeader('authorization', `bearer ${token}`)
+		.post('/')
+		.reply(200, {data: {token}});
+
+	t.is((await m('http://foo.bar/', {token})).body.token, token);
 });

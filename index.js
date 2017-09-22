@@ -26,6 +26,12 @@ const graphqlGot = (url, opts) => {
 	delete opts.operationName;
 	delete opts.variables;
 
+	if (opts.token) {
+		opts.headers = Object.assign({}, opts.headers, {
+			authorization: `bearer ${opts.token}`
+		});
+	}
+
 	return got(url, opts)
 		.then(res => {
 			res.body = res.body.data;

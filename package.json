@@ -46,6 +46,7 @@
 		"graphql": "^0.11.3",
 		"graphql-tools": "^1.2.2",
 		"micro": "^8.0.4",
+		"nock": "^9.0.18",
 		"test-listen": "^1.0.2",
 		"xo": "*"
 	}
