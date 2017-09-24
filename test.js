@@ -126,3 +126,11 @@ test('token option', async t => {
 
 	t.is((await m('http://foo.bar/', {token})).body.token, token);
 });
+
+test('prepends `https://` to url', async t => {
+	nock('https://foo.bar/')
+		.post('/')
+		.reply(200, {data: 'ok'});
+
+	t.is((await m('foo.bar/')).body, 'ok');
+});

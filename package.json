@@ -38,7 +38,8 @@
 	],
 	"dependencies": {
 		"aggregate-error": "^1.0.0",
-		"got": "^7.1.0"
+		"got": "^7.1.0",
+		"prepend-http": "^2.0.0"
 	},
 	"devDependencies": {
 		"apollo-server-micro": "^1.1.2",

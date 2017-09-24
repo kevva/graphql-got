@@ -1,6 +1,7 @@
 'use strict';
 const AggregateError = require('aggregate-error');
 const got = require('got');
+const prependHttp = require('prepend-http');
 
 class GraphQLError extends Error {
 	constructor(err, body) {
@@ -32,7 +33,7 @@ const graphqlGot = (url, opts) => {
 		});
 	}
 
-	return got(url, opts)
+	return got(prependHttp(url, {https: true}), opts)
 		.then(res => {
 			res.body = res.body.data;
 			return res;

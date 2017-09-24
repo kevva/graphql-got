@@ -40,7 +40,7 @@ graphqlGot('api.graphql.unicorn', {query}).then(res => {
 
 ## API
 
-Same as [`got`](https://github.com/sindresorhus/got), but with some additional options below.
+Same as [`got`](https://github.com/sindresorhus/got), but with some additional options below. URLs without protocol will be prepended with `https://`.
 
 ### query
 
