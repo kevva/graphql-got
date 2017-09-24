@@ -1,6 +1,6 @@
 {
 	"name": "graphql-got",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Convenience wrapper for got to interact with GraphQL",
 	"license": "MIT",
 	"repository": "kevva/graphql-got",
