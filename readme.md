@@ -24,7 +24,7 @@ const query = `{
 	}
 }`;
 
-graphqlGot('api.graphql.unicorn', {query}).then(res => {
+graphqlGot('api.graphql.unicorn', {query}).then(response => {
 	console.log(response.body);
 	/*
 	{
