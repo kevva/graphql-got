@@ -17,6 +17,7 @@ test.before(async () => {
 
 		type Query {
 			unicorn(id: Int!): Unicorn
+			error: Int
 		}
 	`;
 
@@ -25,7 +26,10 @@ test.before(async () => {
 			unicorn: (_, {id}) => ({
 				id,
 				name: 'Hello world'
-			})
+			}),
+			error: () => {
+				throw new Error('boom');
+			}
 		}
 	};
 
@@ -92,6 +96,17 @@ test('operationName', async t => {
 			id: 0
 		}
 	});
+});
+
+test('resolver error', async t => {
+	const query = `
+		{
+			error
+		}
+	`;
+
+	const {errors} = await m(url, {query});
+	t.deepEqual(errors, [{message: 'boom', locations: [{line: 3, column: 4}], path: ['error']}]);
 });
 
 test('GraphQLError', async t => {

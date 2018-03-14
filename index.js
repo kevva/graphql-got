@@ -35,6 +35,7 @@ const graphqlGot = (url, opts) => {
 
 	return got(prependHttp(url, {https: true}), opts)
 		.then(res => {
+			res.errors = res.body.errors;
 			res.body = res.body.data;
 			return res;
 		})
